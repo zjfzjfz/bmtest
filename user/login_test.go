@@ -26,7 +26,7 @@ var _ = Describe("User Login API", func() {
         It("invalid", func() {
             payload := map[string]interface{}{
                 "email":    "christianlsl@foxmail.com",
-                "password": "111",
+                "password": "1234",
             }
 
             resp, _ := client.R().
@@ -43,7 +43,7 @@ var _ = Describe("User Login API", func() {
 
 		It("valid", func() {
             payload := map[string]interface{}{
-                "email":    "sjj@163.com",
+                "email":    "zjf15821145685@163.com",
                 "password": "1234",
             }
 
@@ -60,8 +60,8 @@ var _ = Describe("User Login API", func() {
             Expect(err).To(BeNil())
 
             Expect(result["success"]).To(BeTrue())
-            data := result["data"].(map[string]interface{})
-            Expect(data).To(HaveKey("token"))
+            token := result["data"]
+			Expect(token).To(Not(BeNil()))
         })
     })
 })

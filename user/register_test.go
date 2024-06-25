@@ -23,8 +23,8 @@ var _ = Describe("User Register API", func() {
     })
 
     Context("sending registration request", func() {
-        It("valid", func() {
-            email := "sjj@163.com"
+        It("invalid", func() {
+            email := "sjjj@163.com"
 
             resp, err := client.R().
                 SetHeader("Content-Type", "application/json").
@@ -38,12 +38,10 @@ var _ = Describe("User Register API", func() {
             err = json.Unmarshal(resp.Body(), &result)
             Expect(err).To(BeNil())
             Expect(result["success"]).To(BeTrue())
-			code := result["data"].(map[string]interface{})["code"].(string)
-			
-			
+					
 			payload := map[string]interface{}{
                 "email":     email,
-                "code":      code,
+                "code":      "",
                 "nick_name": "sjj",
                 "password":  "1234",
                 "age":       22,
